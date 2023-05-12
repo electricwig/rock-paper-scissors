@@ -21,9 +21,11 @@ function getComputerChoice() {
 }
 
 
-// Now I will write a function to handle player input
+// Now I will write an extra function to handle player input
 function getPlayerChoice() {
+    // Ask player for their choice - note how easy this is, now that it's no longer wrapped in ParseInt()
     let playerChoice = prompt("Make your choice: ");
+    // return the answer
     return playerChoice;
     }
 
@@ -35,7 +37,7 @@ function getPlayerChoice() {
 function playRound(playerSelection, computerSelection) {
     // Make player's choice case-insensitive by converting to lowercase
     playerSelection = playerSelection.toLowerCase();
-    // Now that we have the selections, time to compare ... 
+    // Now that we have the selections, time to compare ... Remembering to compare the LowerCase versions(!)
     if (playerSelection === "rock" && computerSelection === "paper") {
         return "You Lose! Paper beats Rock";
     }
@@ -60,34 +62,16 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-
+// Finally the game function itself - which for now is called via a button in my html
 function game() {
-    // Might as well clear the console each time
-    console.clear();
-    // Using the for loop from FizzBuzz, although tbh it's very familiar from CS50x/C
+    // Use a for loop to play five rounds - very familiar from CS50x/C
     for (let i = 0; i < 5; i++) {
-        // This is working so far, i.e. it's choosing a different result each time
+        // Note to self: is this the correct way and place to be declaring variables? Inside the function?
         let computerSelection = getComputerChoice();
         let playerSelection = getPlayerChoice();
-        // Logging the output to check
+        // Play the rounds, logging win message in the console
         console.log(playRound(playerSelection, computerSelection));
-        // console.log(playerSelection);
     }
 }
 
 
-
-
-
-
-
-
-
-// // Now a game function to play five rounds
-// function game() {
-//     let computerSelection = getComputerChoice();
-//     // Ask for player choice
-//     let playerSelection = getPlayerChoice();
-
-//     console.log(playRound(playerSelection, computerSelection));
-// }
