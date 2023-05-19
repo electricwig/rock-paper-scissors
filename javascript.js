@@ -1,3 +1,20 @@
+// Add a 'button click' event listener to our Rock, Paper and Scissors buttons
+// first get all buttons by id using querySelectorAll
+const choices = document.querySelectorAll('#btn');
+// then go through each using ForEach
+choices.forEach((choices) => {
+    // adding an event listener to each one
+    choices.addEventListener('click', () => {
+        // get the player's choice via button's text
+        let choice = choices.innerText;
+        let computer = getComputerChoice();
+        // then call our function and log the result
+        console.log(playRound(choice, computer));
+    });
+});
+
+
+
 // Write a function called getComputerChoice that randomly returns "Rock", "Paper" or "Scissors"
 // Function itself takes no arguments
 function getComputerChoice() {
@@ -65,13 +82,13 @@ function playRound(playerSelection, computerSelection) {
 // Finally the game function itself - which for now is called via a button in my html
 function game() {
     // Use a for loop to play five rounds - very familiar from CS50x/C
-    for (let i = 0; i < 5; i++) {
+    // for (let i = 0; i < 5; i++) {
         // Note to self: is this the correct way and place to be declaring variables? Inside the function?
         let computerSelection = getComputerChoice();
         let playerSelection = getPlayerChoice();
         // Play the rounds, logging win message in the console
         console.log(playRound(playerSelection, computerSelection));
-    }
+    // }
 }
 
 
