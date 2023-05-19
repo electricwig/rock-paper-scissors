@@ -1,5 +1,9 @@
+const text_display = document.getElementById('text_display');
+text_display.textContent = "Make your selection ...";
+
+
 // Add a 'button click' event listener to our Rock, Paper and Scissors buttons
-// first get all buttons by id using querySelectorAll
+// get all buttons by id using querySelectorAll
 const choices = document.querySelectorAll('#btn');
 // then go through each using ForEach
 choices.forEach((choices) => {
@@ -9,9 +13,10 @@ choices.forEach((choices) => {
         let choice = choices.innerText;
         let computer = getComputerChoice();
         // then call our function and log the result
-        console.log(playRound(choice, computer));
+        text_display.textContent = playRound(choice, computer);
     });
 });
+
 
 
 
