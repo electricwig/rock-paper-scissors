@@ -1,5 +1,10 @@
 const text_display = document.getElementById('text_display');
-text_display.textContent = "Make your selection ...";
+const player_score_display = document.getElementById('player_score');
+const computer_score_display = document.getElementById('computer_score');
+
+let player_score = 0;
+let computer_score = 0;
+let rounds_played = 0;
 
 
 // Add a 'button click' event listener to our Rock, Paper and Scissors buttons
@@ -12,12 +17,13 @@ choices.forEach((choices) => {
         // get the player's choice via button's text
         let choice = choices.innerText;
         let computer = getComputerChoice();
-        // then call our function and log the result
-        text_display.textContent = playRound(choice, computer);
+        // then call our updated game function
+        game(choice, computer);
     });
 });
 
 
+updateUI();
 
 
 // Write a function called getComputerChoice that randomly returns "Rock", "Paper" or "Scissors"
@@ -61,21 +67,27 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     // Now that we have the selections, time to compare ... Remembering to compare the LowerCase versions(!)
     if (playerSelection === "rock" && computerSelection === "paper") {
+        computer_score +=1;
         return "You Lose! Paper beats Rock";
     }
     else if (playerSelection === "rock" && computerSelection === "scissors") {
+        player_score +=1;
         return "You Win! Rock beats Scissors";
     }
     else if (playerSelection === "paper" && computerSelection === "rock") {
+        player_score +=1;
         return "You Win! Paper beats Rock";
     }
     else if (playerSelection === "paper" && computerSelection === "scissors") {
+        computer_score +=1;
         return "You Lose! Scissors beats Paper";
     }
     else if (playerSelection === "scissors" && computerSelection === "paper") {
+        player_score +=1;
         return "You Win! Scissors beats Paper";
     }
     else if (playerSelection === "scissors" && computerSelection === "rock") {
+        computer_score +=1;
         return "You Lose! Rock beats Scissors";
     }
     else if (playerSelection === computerSelection) {
@@ -85,15 +97,26 @@ function playRound(playerSelection, computerSelection) {
 
 
 // Finally the game function itself - which for now is called via a button in my html
-function game() {
+function game(choice, computer) {
     // Use a for loop to play five rounds - very familiar from CS50x/C
     // for (let i = 0; i < 5; i++) {
         // Note to self: is this the correct way and place to be declaring variables? Inside the function?
-        let computerSelection = getComputerChoice();
-        let playerSelection = getPlayerChoice();
-        // Play the rounds, logging win message in the console
-        console.log(playRound(playerSelection, computerSelection));
+        text_display.textContent = playRound(choice, computer);
+        rounds_played +=1;
+        updateUI();
     // }
 }
 
+
+// Seperate the UI updates
+function updateUI() {
+    // Set UI elements, based on rounds and scores
+    // Reset starting message if rounds played is zero
+    if (rounds_played == 0) {
+        text_display.textContent = "Make your selection ...";
+    }
+
+    player_score_display.textContent = "Your Score: " + player_score;
+    computer_score_display.textContent = "The Computer's Score: " + computer_score;
+}
 
