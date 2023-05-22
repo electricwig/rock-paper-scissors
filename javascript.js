@@ -87,8 +87,15 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-// game function
-function game(choice, computer) {
+
+function choose() {
+    document.getElementById("player_img").src = "./images/rock_player.png";
+    document.getElementById("computer_img").src = "./images/rock_computer.png";
+    console.log("choose");
+}
+
+
+function result(choice, computer) {
     // display images
     setImages(choice, computer);
     // display result of PlayRound choice
@@ -101,6 +108,21 @@ function game(choice, computer) {
         text_display.textContent = text;
     }
     updateUI();
+}
+
+
+// game function
+function game(choice, computer) {
+    choose();
+    setTimeout(function () {
+    choose();
+    }, 2000);
+    setTimeout(function () {
+    choose();
+    }, 3000);
+    setTimeout(function (){
+        result(choice, computer);
+    }, 4000);
 }
 
 
