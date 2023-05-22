@@ -4,7 +4,6 @@ const computer_score_display = document.getElementById('computer_score');
 
 let player_score = 0;
 let computer_score = 0;
-let rounds_played = 0;
 
 const new_game_button = document.getElementById("new_game");
 const game_buttons = document.getElementById("game_buttons");
@@ -132,7 +131,6 @@ function newGame() {
     // reset counters
     player_score = 0;
     computer_score = 0;
-    rounds_played = 0;
     // display starting text
     text_display.textContent = "First to five wins ...";
     updateUI();
