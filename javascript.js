@@ -4,10 +4,13 @@ const computer_score_display = document.getElementById('computer_score');
 
 let player_score = 0;
 let computer_score = 0;
+let count = 0;
 
 const new_game_button = document.getElementById("new_game");
 const game_buttons = document.getElementById("game_buttons");
 
+const player_image = document.getElementById("player_img");
+const computer_image = document.getElementById("computer_img");
 
 
 // Add a 'button click' event listener to our Rock, Paper and Scissors buttons
@@ -89,9 +92,15 @@ function playRound(playerSelection, computerSelection) {
 
 
 function choose() {
-    document.getElementById("player_img").src = "./images/rock_player.png";
-    document.getElementById("computer_img").src = "./images/rock_computer.png";
-    console.log("choose");
+    player_image.src = "./images/rock_player.png";
+    computer_image.src = "./images/rock_computer.png";
+    let countdown = ["Three ...", "Two ...", "One ..."];
+    text_display.textContent = countdown[count];
+    count +=1;
+    if (count == 3) {
+        count =0;
+    }
+    // console.log("choose");
 }
 
 
@@ -116,21 +125,21 @@ function game(choice, computer) {
     choose();
     setTimeout(function () {
     choose();
-    }, 2000);
+    }, 1000);
     setTimeout(function () {
     choose();
-    }, 3000);
+    }, 2000);
     setTimeout(function (){
         result(choice, computer);
-    }, 4000);
+    }, 3000);
 }
 
 
 function setImages(playerSelection, computerSelection) {
     let playerImg = "./images/" + playerSelection + "_player.png";
     let computerImg = "./images/" + computerSelection + "_computer.png";
-    document.getElementById("player_img").src = playerImg;
-    document.getElementById("computer_img").src = computerImg;
+    player_image.src = playerImg;
+    computer_image.src = computerImg;
 }
 
 
