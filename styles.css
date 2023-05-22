@@ -8,9 +8,27 @@ body {
     margin-right: 200px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .score_container {
     display: flex;
-    max-width: 400px;
+    width: 400px;
     justify-content: space-between;
-    margin-bottom: 40px;
+    padding-bottom: 40px;
+}
+
+.game_images {
+    padding: 40px;
+}
+
+#game_buttons {
+    margin-top: 40px;
+}
+
+#new_game {
+    margin-top: 40px;
 }
