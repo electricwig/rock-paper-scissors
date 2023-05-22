@@ -5,6 +5,7 @@ const computer_score_display = document.getElementById('computer_score');
 let player_score = 0;
 let computer_score = 0;
 let count = 0;
+let selected = false;
 
 const new_game_button = document.getElementById("new_game");
 const game_buttons = document.getElementById("game_buttons");
@@ -117,21 +118,25 @@ function result(choice, computer) {
         text_display.textContent = text;
     }
     updateUI();
+    selected = false;
 }
 
 
 // game function
 function game(choice, computer) {
-    choose();
-    setTimeout(function () {
-    choose();
-    }, 1000);
-    setTimeout(function () {
-    choose();
-    }, 2000);
-    setTimeout(function (){
-        result(choice, computer);
-    }, 3000);
+    if (selected == false) {
+        selected = true;
+        choose();
+        setTimeout(function () {
+        choose();
+        }, 1000);
+        setTimeout(function () {
+        choose();
+        }, 2000);
+        setTimeout(function (){
+            result(choice, computer);
+        }, 3000);
+    }
 }
 
 
