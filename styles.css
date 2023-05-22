@@ -4,8 +4,6 @@ body {
     font-size: large;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin-top: 100px;
-    margin-left: 200px;
-    margin-right: 200px;
 }
 
 .container {
@@ -24,7 +22,10 @@ body {
 .game_images {
     padding: 40px;
     min-height: 200px;
+    display: flex;
+    justify-content: space-between;
 }
+
 
 #btn {
     background-color: antiquewhite;
