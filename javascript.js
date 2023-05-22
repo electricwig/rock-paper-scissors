@@ -14,6 +14,19 @@ const player_image = document.getElementById("player_img");
 const computer_image = document.getElementById("computer_img");
 
 
+// add a choice animation
+const choiceBounce = [
+    { transform: "translateY(-40px)" },
+    { transform: "translateY(0px)" },
+    { transform: "translateY(-40px)" },
+];
+
+const choiceTiming = {
+  duration: 1000,
+  iterations: 3,
+};
+
+
 // Add a 'button click' event listener to our Rock, Paper and Scissors buttons
 // get all buttons by id using querySelectorAll
 const choices = document.querySelectorAll('#btn');
@@ -126,6 +139,8 @@ function result(choice, computer) {
 function game(choice, computer) {
     if (selected == false) {
         selected = true;
+        player_image.animate(choiceBounce, choiceTiming);
+        computer_image.animate(choiceBounce, choiceTiming);
         choose();
         setTimeout(function () {
         choose();
@@ -179,8 +194,11 @@ function newGame() {
     // reset counters
     player_score = 0;
     computer_score = 0;
+    // reset images
+    player_image.src = "./images/rock_player.png";
+    computer_image.src = "./images/rock_computer.png";
     // display starting text
-    text_display.textContent = "First to five wins ...";
+    text_display.textContent = "First to five wins! Make your selection:";
     updateUI();
 }
 

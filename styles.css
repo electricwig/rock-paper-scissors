@@ -23,7 +23,19 @@ body {
 
 .game_images {
     padding: 40px;
+    min-height: 200px;
 }
+
+#btn {
+    background-color: antiquewhite;
+    padding: 10px;
+    min-width: 100px;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 
 #game_buttons {
     margin-top: 40px;
@@ -31,4 +43,14 @@ body {
 
 #new_game {
     margin-top: 40px;
+}
+
+#new_game_button {
+    background-color: antiquewhite;
+    padding: 10px;
+    min-width: 100px;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
