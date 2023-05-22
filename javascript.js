@@ -8,6 +8,8 @@ let computer_score = 0;
 const new_game_button = document.getElementById("new_game");
 const game_buttons = document.getElementById("game_buttons");
 
+
+
 // Add a 'button click' event listener to our Rock, Paper and Scissors buttons
 // get all buttons by id using querySelectorAll
 const choices = document.querySelectorAll('#btn');
@@ -53,6 +55,7 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     // Make player's choice case-insensitive by converting to lowercase
     playerSelection = playerSelection.toLowerCase();
+
     // Now that we have the selections, time to compare ... Remembering to compare the LowerCase versions(!)
     if (playerSelection === "rock" && computerSelection === "paper") {
         computer_score +=1;
@@ -86,6 +89,8 @@ function playRound(playerSelection, computerSelection) {
 
 // game function
 function game(choice, computer) {
+    // display images
+    setImages(choice, computer);
     // display result of PlayRound choice
     let text = playRound(choice, computer);
     // if either score is 5 it's game_over()
@@ -94,9 +99,16 @@ function game(choice, computer) {
     }
     else {
         text_display.textContent = text;
-        rounds_played +=1;
     }
     updateUI();
+}
+
+
+function setImages(playerSelection, computerSelection) {
+    let playerImg = "./images/" + playerSelection + "_player.png";
+    let computerImg = "./images/" + computerSelection + "_computer.png";
+    document.getElementById("player_img").src = playerImg;
+    document.getElementById("computer_img").src = computerImg;
 }
 
 
