@@ -6,6 +6,8 @@ let player_score = 0;
 let computer_score = 0;
 let rounds_played = 0;
 
+const new_game_button = document.getElementById("new_game");
+const game_buttons = document.getElementById("game_buttons");
 
 // Add a 'button click' event listener to our Rock, Paper and Scissors buttons
 // get all buttons by id using querySelectorAll
@@ -23,17 +25,16 @@ choices.forEach((choices) => {
 });
 
 
-updateUI();
+// reset all using newGame function
+newGame();
 
-
-// Write a function called getComputerChoice that randomly returns "Rock", "Paper" or "Scissors"
+// getComputerChoice randomly returns "Rock", "Paper" or "Scissors"
 // Function itself takes no arguments
 function getComputerChoice() {
     // return random integer between 0 and 2  
     let rand = Math.floor(Math.random() * 3);
     let choice = "";
     // then set choice based on result
-    // note: making computer choices lowercase here so they are easily comparable with playerChoice.toLowerCase()
     if (rand === 0) {
         choice = "rock";
     }
@@ -43,25 +44,13 @@ function getComputerChoice() {
     else {
         choice = "scissors";
     }
-    // console.log(choice);
     // return the choice
     return choice;
 }
 
 
-// Now I will write an extra function to handle player input
-function getPlayerChoice() {
-    // Ask player for their choice - note how easy this is, now that it's no longer wrapped in ParseInt()
-    let playerChoice = prompt("Make your choice: ");
-    // return the answer
-    return playerChoice;
-    }
-
-
-// Write a function that plays a single round of Rock Paper Scissors
-// The function should take two parameters (playerSelection, computerSelection) then return a string that declares the winner of the round: 
-// "You Lose! Paper beats Rock"
-// Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation)
+// PlayRound plays a single round of Rock Paper Scissors
+// It takes two parameters (playerSelection, computerSelection) then return a string that declares the winner of the round: 
 function playRound(playerSelection, computerSelection) {
     // Make player's choice case-insensitive by converting to lowercase
     playerSelection = playerSelection.toLowerCase();
@@ -96,27 +85,57 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-// Finally the game function itself - which for now is called via a button in my html
+// game function
 function game(choice, computer) {
-    // Use a for loop to play five rounds - very familiar from CS50x/C
-    // for (let i = 0; i < 5; i++) {
-        // Note to self: is this the correct way and place to be declaring variables? Inside the function?
-        text_display.textContent = playRound(choice, computer);
+    // display result of PlayRound choice
+    let text = playRound(choice, computer);
+    // if either score is 5 it's game_over()
+    if (player_score == 5 || computer_score == 5) {
+        gameOver();
+    }
+    else {
+        text_display.textContent = text;
         rounds_played +=1;
-        updateUI();
-    // }
+    }
+    updateUI();
 }
 
 
-// Seperate the UI updates
 function updateUI() {
-    // Set UI elements, based on rounds and scores
-    // Reset starting message if rounds played is zero
-    if (rounds_played == 0) {
-        text_display.textContent = "Make your selection ...";
-    }
-
+    // display the scores
     player_score_display.textContent = "Your Score: " + player_score;
     computer_score_display.textContent = "The Computer's Score: " + computer_score;
 }
+
+
+function gameOver() {
+    // display appropriate win message
+    if (player_score == 5) {
+        text_display.textContent = "You won!";
+    }
+    else if (computer_score == 5) {
+        text_display.textContent = "The computer won :(";
+    }
+    // hide game buttons
+    game_buttons.style.display = "none";
+    // show new game button
+    new_game_button.style.display = "block";
+    updateUI();
+}
+
+
+function newGame() {
+    // show game buttons
+    game_buttons.style.display = "block";
+    // hide new game button
+    new_game_button.style.display = "none";
+    // reset counters
+    player_score = 0;
+    computer_score = 0;
+    rounds_played = 0;
+    // display starting text
+    text_display.textContent = "First to five wins ...";
+    updateUI();
+}
+
 
